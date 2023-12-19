@@ -90,44 +90,70 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var passwordAmount = prompt(
-    "Please select the amount of characters your password will contain:"
+  var passwordChars = parseInt(
+    prompt(
+      "Please select the amount of characters your password will contain: Any number from 8 - 128"
+    )
   );
-  var specialChars = confirm(
-    "Select OK if you want special characters included"
-  );
-  var numberChars = confirm(
-    "Select OK if you want numerical characters included"
-  );
-  var lowerChars = confirm(
-    "Select OK if you want lower-cased characters included"
-  );
-  var upperChars = confirm(
-    "Select OK if you want upper-cased characters included"
-  );
+  if (passwordChars >= 8 && passwordChars <= 128) {
+    var passwordArray = [];
+    var specialChars = confirm(
+      "Select OK if you want special characters included"
+    );
+    if (specialChars) {
+      passwordArray.push(...specialCharacters);
+    }
+    var numberChars = confirm(
+      "Select OK if you want numerical characters included"
+    );
+    if (numberChars) {
+      passwordArray.push(...numericCharacters);
+    }
+    var lowerChars = confirm(
+      "Select OK if you want lower-cased characters included"
+    );
+    if (lowerChars) {
+      passwordArray.push(...lowerCasedCharacters);
+    }
+    var upperChars = confirm(
+      "Select OK if you want upper-cased characters included"
+    );
+    if (upperChars) {
+      passwordArray.push(...upperCasedCharacters);
+    }
+    var passwordAmount = "";
+    for (var i = 0; i < passwordChars; i++) {
+      passwordAmount += getRandom(passwordArray);
+    }
+    return passwordAmount;
+  } else {
+    alert("Please input a number between 8 and 128 to generate a password.");
+  }
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {}
+function getRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
 // Function to generate password with user input
-function generatePassword() {}
+function generatePassword() {
+  return getPasswordOptions();
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  getPasswordOptions();
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  // // Additional Functionality that was uneccessary really
+  // alert(
+  //   `Your Generated Password is: ${password}\n Click OK to copy your password from the text area.`
+  // );
   passwordText.value = password;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-console.log(
-  upperCasedCharacters[Math.floor(Math.random() * upperCasedCharacters.length)]
-);
