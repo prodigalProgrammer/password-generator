@@ -8,7 +8,7 @@ In this project I was required to create a random password generator that employ
 
 The app has been created primarily using JavaScript with some simple HTML and CSS to make the user experience better.
 
-_Find the link to the the deployed website [here](https://prodigalprogrammer.github.io/Console-Finances/)_
+_Find the link to the the deployed website [here](https://prodigalprogrammer.github.io/password-generator/)_
 
 <p align="right">(<a href="#password-generator" >Back to top</a>)</p>
 
